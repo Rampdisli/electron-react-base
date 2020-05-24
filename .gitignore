@@ -106,3 +106,5 @@ dist
 # own ignors
 .idea/
 dist/
+build/
+

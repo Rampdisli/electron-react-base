@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "copy-mac": "cp index.html build/",
-    "copy": "copy index.html build/",
+    "copy": "copy \"index.html\" \"build/\"",
     "build-mac": "tsc && npm run copy-mac",
     "build": "tsc && npm run copy",
     "watch": "tsc -w",
