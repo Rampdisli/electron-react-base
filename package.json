@@ -1,13 +1,24 @@
 {
   "name": "electron-ts",
   "version": "1.0.0",
-  "description": "Yet another Electron application",
   "scripts": {
-    "build": "tsc",
+    "copy-mac": "cp index.html build/",
+    "copy": "copy index.html build/",
+    "build-mac": "tsc && npm run copy-mac",
+    "build": "tsc && npm run copy",
     "watch": "tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/electron/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && set ELECTRON=DEV && electron ./build/electron/main.js",
+    "start-mac": "npm run build-mac && ELECTRON=DEV electron ./build/electron/main.js",
+    "pack": "electron-builder -c.extraMetadata.main=build/electron/main.js",
+    "dist": "electron-builder -c.extraMetadata.main=build/electron/main.js --dir"
+  },
+  "build": {
+    "appId": "ch.rampi.electron-react-base",
+    "productName": "Electron-React-Base",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ]
   },
   "author": "Kevin Hirczy <https://nehalist.io>",
   "license": "MIT",
@@ -15,6 +26,8 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "electron": "^7.1.5",
+    "electron-builder": "^22.6.1",
+    "react-scripts": "^3.4.1",
     "typescript": "^3.7.3"
   },
   "dependencies": {

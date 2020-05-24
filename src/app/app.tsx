@@ -1,27 +1,22 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import {IpcService} from "./IpcService";
 
-class App extends React.Component<{}, {}> {
+function App() {
+    const ipc = new IpcService();
 
-    render(): JSX.Element {
-        return (
-            <div>
-                Test
-            </div>
+    function getSystemInfo(){
+        ipc.send<{ kernel: string }>('system-info').then(t =>
+            document.getElementById('myInfo').innerHTML = t.kernel
         );
     }
+
+    return (
+        <div>
+            <button onClick={getSystemInfo}>Get My System Info</button>
+            Meine Info
+            <div id="myInfo"> </div>
+        </div>
+    );
 }
 
-const ipc = new IpcService();
-
-document.getElementById('request-os-info').addEventListener('click', async () => {
-    const t = await ipc.send<{ kernel: string }>('system-info');
-    document.getElementById('os-info').innerHTML = t.kernel;
-});
-
-ReactDOM.render(
-    <App/>,
-    document.getElementById('app') as HTMLElement
-);
-
+export default App

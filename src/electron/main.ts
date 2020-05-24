@@ -2,6 +2,7 @@ import {app, BrowserWindow, ipcMain} from 'electron';
 import {IpcChannelInterface} from "./IPC/IpcChannelInterface";
 import {SystemInfoChannel} from "./IPC/SystemInfoChannel";
 
+
 class Main {
   private mainWindow: BrowserWindow;
 
@@ -36,7 +37,14 @@ class Main {
     });
 
     this.mainWindow.webContents.openDevTools();
-    this.mainWindow.loadFile('../../index.html');
+    console.log(process.env.ELECTRON);
+    if(!!process.env.ELECTRON){
+      this.mainWindow.loadFile('../index.html');
+    }else{
+      this.mainWindow.loadFile('./build/index.html');
+    }
+
+
   }
 
   private registerIpcChannels(ipcChannels: IpcChannelInterface[]) {

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "dist",
+    "outDir": "build",
     "baseUrl": ".",
     "jsx": "react",
     "target": "es5",
@@ -12,6 +12,7 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "index.html"
   ]
 }
