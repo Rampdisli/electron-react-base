@@ -12,6 +12,12 @@ export class SystemInfoChannel implements IpcChannelInterface {
     if (!request.responseChannel) {
       request.responseChannel = `${this.getName()}_response`;
     }
-    event.sender.send(request.responseChannel, { kernel: execSync('uname -a').toString() });
+
+    const result = execSync('ver').toString()
+
+    event.sender.send(request.responseChannel, { kernel: result });
+
+    //Mac version
+    //event.sender.send(request.responseChannel, { kernel: execSync('').toString() });
   }
 }

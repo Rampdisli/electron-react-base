@@ -13,7 +13,7 @@ function App() {
     return (
         <div>
             <button onClick={getSystemInfo}>Get My System Info</button>
-            Meine Info
+            <h1>Meine Info</h1>
             <div id="myInfo"> </div>
         </div>
     );
