@@ -13,7 +13,7 @@ export class SystemInfoChannel implements IpcChannelInterface {
       request.responseChannel = `${this.getName()}_response`;
     }
 
-    const result = execSync('ver').toString()
+    const result = execSync('py demoscript.py').toString()
 
     event.sender.send(request.responseChannel, { kernel: result });
 

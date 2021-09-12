@@ -32,7 +32,8 @@ class Main {
       width: 800,
       title: `Yet another Electron Application`,
       webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: true,
+        contextIsolation: false
       }
     });
 
